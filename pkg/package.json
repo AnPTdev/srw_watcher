@@ -1,0 +1,69 @@
+{
+  "name": "wosfilewatcher",
+  "version": "1.0.0",
+  "description": "My Moleculer-based microservices project",
+  "scripts": {
+    "dev": "moleculer-runner --envfile WOSENV.env --config pkg/moleculer.config.js --repl --hot services/**/*.service.js",
+    "start": "moleculer-runner --envfile WOSENV.env --config pkg/moleculer.config.js  services/**/*.service.js",
+    "cli": "moleculer connect TCP",
+    "ci": "jest --watch",
+    "test": "jest --coverage",
+    "dc:up": "docker-compose up --build -d",
+    "dc:logs": "docker-compose logs -f",
+    "dc:down": "docker-compose down",
+    "pkg": "pkg  . --options expose-gc",
+    "pkgZ": "pkg --options expose-gc --compress GZip . ",
+    "pkgB": "pkg --options expose-gc --compress Brotli . "
+  },
+
+  "keywords": [
+    "microservices",
+    "moleculer"
+  ],
+
+  "author": "",
+
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "jest": "^27.1.0",
+    "jest-cli": "^27.1.0",
+    "moleculer-repl": "^0.6.6"
+  },
+  "dependencies": {
+    "@seald-io/nedb": "^3.0.0",
+    "csv-parse": "^5.1.0",
+    "dotenv": "^16.0.1",
+    "pkg": "^5.7.0",
+    "flat": "^5.0.2",
+    "ioredis": "^4.28.5",
+    "moleculer": "^0.14.16",
+    "nats": "^2.7.1",
+    "monetdb": "^1.0.7",
+    "recursive-watch": "^1.1.4",
+    "redlock": "^4.2.0"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "rootDir": "./services",
+    "roots": [
+      "../test"
+    ]
+  },
+  "bin": "index.js",
+  "pkg": {
+    "scripts": [
+      "pkg/moleculer.config.js",
+      "services/**/*.*"
+    ],
+    "assets": [],
+    "targets": [
+      "node12-win"
+    ],
+    "options": [],
+    "outputPath": "dist"
+  },
+  "engines": {
+    "node": ">= 12.x.x"
+  }
+}

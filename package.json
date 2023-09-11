@@ -1,0 +1,56 @@
+{
+  "name": "srw_watcher",
+  "version": "1.0.0",
+  "description": "My Moleculer-based microservices project",
+  "scripts": {
+    "dev": "moleculer-runner --envfile wos.env --repl --config pkg/moleculer.config.js --hot services/**/*.service.js",
+    "start": "moleculer-runner  --envfile wos.env --config pkg/moleculer.config.js services",
+    "cli": "moleculer connect TCP",
+    "ci": "jest --watch",
+    "test": "jest --coverage",
+    "lint": "eslint services",
+    "pkg": "pkg  . --options expose-gc",
+    "pkgZ": "pkg --options expose-gc --compress GZip . ",
+    "pkgB": "pkg --options expose-gc --compress Brotli . "
+  },
+  "keywords": [
+    "microservices",
+    "moleculer"
+  ],
+  "author": "",
+  "devDependencies": {
+    "jest": "^27.1.0",
+    "jest-cli": "^27.1.0",
+    "moleculer-repl": "^0.6.6"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "moleculer": "^0.14.16",
+    "nats": "^2.2.0",
+    "pkg": "^5.7.0"
+  },
+  "engines": {
+    "node": ">= 12.x.x"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "rootDir": "./services",
+    "roots": [
+      "../test"
+    ]
+  },
+  "bin": "index.js",
+  "pkg": {
+    "scripts": [
+      "pkg/moleculer.config.js",
+      "services/**/*.*"
+    ],
+    "assets": [],
+    "targets": [
+      "node12-win"
+    ],
+    "options": [],
+    "outputPath": "dist"
+  }
+}
